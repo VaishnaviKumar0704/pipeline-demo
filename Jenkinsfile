@@ -1,18 +1,12 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello Jenkins!'
-            }
-        }
-
-        stage('Run Linux Command') {
-            steps {
-                sh 'pwd'
-                sh 'ls -l'
-            }
-        }
+  agent {
+    docker { image 'node:16-alpine' }
+  }
+  stages {
+    stage('Test') {
+      steps {
+        sh 'node --version'
+      }
     }
+  }
 }
